@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>next和nextAll封装</title>
+</head>
+<body>
+<div>
+
+    <h1>文章标题</h1>
+    <!--文章内容-->
+    <ul>
+        <li>我是大哥</li>
+        <li>我是二哥</li>
+        <li id="tab">我是内容3</li>
+        <li>我是四弟</li>
+        <li>我是五弟</li>
+    </ul>
+</div>
+<script type="text/javascript">
+    var oLi = document.getElementById("tab");
+    //模仿jQuery的next(获取下一个弟弟)和nextAll(获取下面所有的弟弟)
+    /**
+     * next:获取指定元素下面的一个兄弟节点
+     * nextAll：获取指定元素下面所有的兄弟节点
+     * @parameter：
+     *          ele：当前元素
+     * @return
+     *          获取到的兄弟节点
+     */
+    //获取下面的一个兄弟节点
+    function next(ele) {
+        var nex = ele.nextSibling;
+        while (nex && nex.nodeType !== 1) {
+            nex = nex.nextSibling;
+        }
+        return nex;
+    }
+    console.log(next(oLi));
+    //获取下面所有的兄弟节点
+    function nextAll(ele) {
+        var nex = ele.nextSibling, ary = [];
+        while (nex) {
+            if(nex.nodeType === 1){
+                ary.push(nex);
+            }
+            nex = nex.nextSibling;
+        }
+        return ary;
+    }
+    console.log(nextAll(oLi));
+</script>
+</body>
+</html>
